@@ -1,0 +1,385 @@
+/* ============ Base ============ */
+:root{
+  --bg: #0b0c10;
+  --panel: #111218;
+  --panel-2:#151725;
+  --card: #171926;
+  --muted: #9aa3af;
+  --text: #f5f7fb;
+  --accent: #5eead4;         /* mint */
+  --accent-2:#22d3ee;        /* cyan */
+  --danger:#ef4444;
+  --success:#22c55e;
+  --ring: 0 0 0 0.2rem rgba(94,234,212,.35);
+  --radius: 14px;
+  --shadow: 0 10px 30px rgba(2,6,23,.35);
+}
+
+*{ box-sizing:border-box }
+html,body,#root{ height:100% }
+body{
+  margin:0;
+  background: radial-gradient(1200px 600px at 20% -10%, #0f1a2f 0%, transparent 60%),
+              radial-gradient(1000px 500px at 120% -20%, #0b2833 0%, transparent 60%),
+              var(--bg);
+  color:var(--text);
+  font: 16px/1.55 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial;
+  letter-spacing:.2px;
+}
+
+/* Utils */
+.container{ width:min(1100px, 92%); margin-inline:auto }
+.section{ padding:72px 0 }
+.section__head{ text-align:center; margin-bottom:28px }
+.dim{ color:var(--muted) }
+.accent{ color: var(--accent) }
+
+/* Generic page/card/buttons to preserve existing components */
+.page{ padding:32px 0 }
+.card{
+  background: linear-gradient(180deg, var(--panel) 0%, var(--card) 100%);
+  border:1px solid rgba(255,255,255,.06);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding:18px 20px;
+}
+button, .btn{
+  appearance:none; border:0;
+  border-radius:12px; padding:12px 16px;
+  font-weight:600; letter-spacing:.2px;
+  background:#13151f; color:var(--text);
+  transition:.18s ease; cursor:pointer; text-decoration:none; display:inline-flex; align-items:center; gap:8px;
+}
+button:hover, .btn:hover{ transform:translateY(-1px) }
+button:focus, .btn:focus{ outline:none; box-shadow: var(--ring) }
+.btn-full{ width:100%; justify-content:center }
+.btn-primary{
+  background: linear-gradient(90deg, var(--accent) 0%, var(--accent-2) 100%);
+  color:#051014;
+}
+.btn-outline{
+  background: transparent;
+  border:1px solid rgba(255,255,255,.18);
+}
+.btn-ghost{
+  background: rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.08);
+}
+
+/* Inputs */
+input, select, textarea{
+  width:100%; background:#0f1220; color:var(--text);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:10px; padding:12px 14px;
+  transition:.15s; outline:none;
+}
+input:focus, select:focus, textarea:focus{ border-color: var(--accent); box-shadow: var(--ring) }
+label{ display:grid; gap:8px; margin:10px 0 }
+
+/* Alerts */
+.error{ color: var(--danger); }
+
+/* Grid */
+.grid{
+  display:grid; gap:18px;
+}
+@media (min-width: 720px){
+  .grid.cols-2{ grid-template-columns: 1fr 1fr; }
+  .grid.cols-3{ grid-template-columns: repeat(3,1fr); }
+}
+.features{ grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
+.feature h3{ margin:6px 0 6px }
+.feature__icon{
+  width:42px; height:42px; border-radius:10px;
+  display:grid; place-items:center; font-size:20px;
+  background: rgba(255,255,255,.08);
+}
+
+/* ============ Hero ============ */
+.hero{
+  padding: 96px 0 36px;
+  background:
+    radial-gradient(600px 300px at 30% 10%, rgba(94,234,212,.18) 0%, rgba(94,234,212,0) 60%),
+    radial-gradient(500px 260px at 80% 0%, rgba(34,211,238,.22) 0%, rgba(34,211,238,0) 60%);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.hero__content{
+  display:grid; gap:28px;
+}
+@media (min-width: 960px){
+  .hero__content{ grid-template-columns: 1.15fr .85fr; align-items:center }
+}
+.hero__title{
+  font-size: clamp(36px, 5vw, 56px);
+  line-height:1.08; margin:0 0 10px;
+}
+.hero__subtitle{
+  margin:0; color: var(--muted); max-width: 58ch;
+}
+.hero__cta{ display:flex; gap:12px; flex-wrap:wrap; margin:18px 0 }
+.hero__meta{ display:flex; gap:14px; flex-wrap:wrap; color:var(--muted); font-size:14px }
+
+.hero__card{ overflow:hidden; padding:0 }
+.hero__card-head{
+  display:flex; gap:6px; padding:12px; border-bottom:1px solid rgba(255,255,255,.06);
+}
+.hero__card-head .dot{
+  width:10px; height:10px; border-radius:50%;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  opacity:.75;
+}
+.hero__card-body{ padding:18px 18px 20px }
+.hero__slot{ margin:4px 0 6px }
+.hero__price{ margin:0 0 14px; color:var(--muted) }
+
+/* ============ CTA band ============ */
+.cta{ padding: 40px 0 90px }
+.cta__box{
+  background: linear-gradient(180deg, var(--panel-2) 0%, rgba(12,15,26,.6) 100%);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius: var(--radius);
+  padding:22px 24px; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:14px;
+}
+
+/* ============ Navbar polish (if your Navbar uses .navbar) ============ */
+/* Optional: only applies if you already have a navbar with these classes */
+.navbar{
+  position:sticky; top:0; z-index:50;
+  background:rgba(10,12,20,.65);
+  backdrop-filter: blur(8px);
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+
+/* Tables & lists (keep lightweight for admin pages) */
+.table{
+  width:100%; border-collapse: collapse;
+  background: var(--panel);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius: 12px; overflow:hidden;
+}
+.table th, .table td{ padding:12px 14px; text-align:left; border-bottom: 1px solid rgba(255,255,255,.06) }
+.table tr:last-child td{ border-bottom:0 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ====== Theme tokens & layout ====== */
+:root {
+  --bg: #0b0f13;
+  --bg-elev: #0f141a;
+  --panel: #121822;
+  --card: #141b26;
+  --text: #e8eef7;
+  --muted: #9fb0c6;
+  --line: #1f2a3a;
+
+  --accent: #25e0d2;
+  --accent-2: #3db8ff;
+
+  --radius: 14px;
+  --shadow: 0 10px 30px rgba(0,0,0,.5);
+}
+
+body {
+  background: radial-gradient(1000px 600px at 20% 0%, #0e141c 0%, var(--bg) 60%) no-repeat fixed;
+  color: var(--text);
+}
+
+.container { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+
+.page { padding: 28px 20px; }
+
+/* ====== Typographic scale ====== */
+h1 { font-size: clamp(2.2rem, 3.4vw + 1rem, 3.2rem); line-height: 1.1; letter-spacing: -0.02em; }
+h2 { font-size: clamp(1.6rem, 1.4vw + 1rem, 2rem); margin: 10px 0 8px; }
+h3 { font-size: 1.125rem; margin: 6px 0 4px; }
+p  { color: var(--muted); }
+
+.eyebrow { color: var(--muted); text-transform: uppercase; letter-spacing: .14em; font-size: .8rem; margin-bottom: 10px; }
+.sub { color: var(--muted); margin-top: 10px; }
+.center { text-align: center; }
+.accent { color: var(--accent); }
+
+/* ====== Buttons ====== */
+.btn { 
+  display: inline-flex; align-items: center; justify-content: center;
+  height: 44px; padding: 0 18px; border-radius: 12px; border: 1px solid transparent;
+  font-weight: 600; text-decoration: none; transition: transform .06s ease, background .2s ease;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn:active { transform: translateY(0); }
+
+.btn-primary {
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  color: #041218; box-shadow: 0 6px 24px rgba(37, 224, 210, .25);
+}
+.btn-outline {
+  border-color: #2a374a; color: var(--text); background: rgba(255,255,255,0.02);
+}
+.btn-outline:hover { background: #1a2331; }
+.btn-block { width: 100%; }
+
+/* ====== Inputs / forms ====== */
+input, select, textarea {
+  background: #0f1520; border: 1px solid #223146; color: var(--text);
+  padding: 12px 14px; border-radius: 12px; outline: none; width: 100%;
+}
+input:focus, select:focus, textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 4px rgba(37,224,210,.12); }
+
+/* ====== Cards ====== */
+.card {
+  background: var(--card); border: 1px solid var(--line);
+  border-radius: var(--radius); box-shadow: var(--shadow);
+}
+.card + .card { margin-top: 12px; }
+
+/* ====== Home hero ====== */
+.home-hero { padding: 36px 0 20px; }
+.hero-grid {
+  display: grid; gap: 32px; align-items: center;
+  grid-template-columns: 1.2fr .9fr;
+}
+@media (max-width: 960px) { .hero-grid { grid-template-columns: 1fr; } }
+
+.hero-copy h1 { margin: 8px 0 10px; }
+.cta-row { display: flex; gap: 10px; flex-wrap: wrap; margin: 18px 0 10px; }
+.bullets { display: flex; gap: 16px; padding: 0; margin: 8px 0 0; list-style: none; color: var(--muted); }
+
+.hero-card {
+  background: linear-gradient(180deg, #111826 0%, #0f1520 100%);
+  border: 1px solid var(--line);
+  border-radius: 18px; padding: 16px; box-shadow: var(--shadow);
+}
+.card-header-dots { display: flex; gap: 6px; margin-bottom: 14px; }
+.card-header-dots span { width: 8px; height: 8px; border-radius: 50%; background: #2a3a52; }
+.card-body { background: rgba(255,255,255,.02); border: 1px solid var(--line); border-radius: 14px; padding: 16px; }
+.label { color: var(--muted); font-size: .85rem; margin-bottom: 6px; }
+.slot-title { font-weight: 700; margin: 2px 0; }
+.price { color: var(--muted); margin: 4px 0 14px; }
+
+/* ====== Features ====== */
+.features { margin-top: 28px; }
+.feature-grid {
+  display: grid; gap: 16px; grid-template-columns: repeat(4, 1fr); margin-top: 12px;
+}
+@media (max-width: 960px) { .feature-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .feature-grid { grid-template-columns: 1fr; } }
+
+.feature { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px; }
+.feature .icon { font-size: 22px; width: 38px; height: 38px; display: grid; place-items: center; background: #0f1520; border: 1px solid #203049; border-radius: 10px; margin-bottom: 10px; }
+
+/* Banner */
+.cta-banner {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  margin-top: 18px; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 16px 18px;
+}
+@media (max-width: 640px) { .cta-banner { flex-direction: column; align-items: stretch; } }
+.cta-banner__text { font-weight: 700; }
+.cta-banner__actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+/* ---------- Layout containers (global) ---------- */
+
+/* Every page gets a centered, readable width */
+.page {
+  max-width: 960px;         /* <- keeps content from stretching edge to edge */
+  margin-inline: auto;      /* center horizontally */
+  padding: 32px 20px;       /* breathing room */
+}
+
+/* If you want a wider page (e.g., admin lists), add className="page wide" */
+.page.wide {
+  max-width: 1200px;
+}
+
+/* Cards look cramped on huge screens without a max width */
+.card {
+  background: var(--surface2, #121419);
+  border: 1px solid rgba(255,255,255,0.04);
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: 0 10px 24px rgba(0,0,0,.25);
+}
+
+/* Headings spacing */
+.page > h1 {
+  margin: 8px 0 24px;
+  line-height: 1.1;
+}
+
+/* ---------- Auth pages: Login / Signup ---------- */
+
+/* keep the auth forms nicely centered & not too wide */
+.auth-shell {
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+/* Inputs full width inside cards, but with nice spacing */
+.card label { 
+  display: block;
+  font-weight: 600;
+  margin: 12px 0 6px;
+}
+
+.card input, .card select, .card textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.08);
+  color: var(--text,#e7edf2);
+  outline: none;
+}
+
+/* Buttons */
+.button, button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 18px;
+  border-radius: 12px;
+  border: none;
+  background: var(--accent,#36e0c2);
+  color: #001315;
+  font-weight: 700;
+  cursor: pointer;
+}
+.button:disabled, button:disabled {
+  opacity: .6;
+  cursor: not-allowed;
+}
+
+/* Secondary text link style */
+a {
+  color: var(--link,#9fd1ff);
+}
+
+/* ---------- Dashboard sections ---------- */
+
+.section {
+  margin-top: 18px;
+}
+.section .card + .card {
+  margin-top: 16px;
+}
+
+/* ---------- Navbar helpers we added earlier ---------- */
+.brand { font-weight: 800; letter-spacing: -0.02em; }
+.nav-link { color: var(--text); opacity: .85; }
+.nav-link:hover { opacity: 1; }
